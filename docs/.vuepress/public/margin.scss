@@ -1,0 +1,35 @@
+// 定义需要的间距数值（可按需添加，如 5、15、20 等）
+$margin-sizes: 0, 10;
+
+// 混合宏：生成单方向 margin 类（mt/mr/mb/ml）
+@mixin single-margin($direction, $size) {
+  .m#{str-slice($direction, 1, 1)}-#{$size} {
+    margin-#{$direction}: #{$size}px;
+  }
+}
+
+// 循环生成 4 个单方向类（mt/mr/mb/ml）
+$directions: top t, right r, bottom b, left l;
+@each $dir, $short in $directions {
+  @each $size in $margin-sizes {
+    @include single-margin($dir, $size);
+  }
+}
+
+// 循环生成 3 个复合方向类（m/m-tb/m-rl）
+@each $size in $margin-sizes {
+  // 全方向 margin
+  .m-#{$size} {
+    margin: #{$size}px;
+  }
+  // 上下方向 margin
+  .m-tb-#{$size} {
+    margin-bottom: #{$size}px;
+    margin-top: #{$size}px;
+  }
+  // 左右方向 margin
+  .m-rl-#{$size} {
+    margin-left: #{$size}px;
+    margin-right: #{$size}px;
+  }
+}
