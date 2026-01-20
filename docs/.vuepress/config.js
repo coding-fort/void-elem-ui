@@ -60,6 +60,16 @@ module.exports = {
       },
     ],
   ],
+  // 核心：禁用服务端渲染，仅客户端构建
+  ssr: {
+    enable: false,
+    // 兼容旧版 VuePress（如果上面配置无效，用这个）
+    devServerRender: false,
+  },
+  // 可选：关闭预渲染，避免 SSR 扫描代码
+  build: {
+    prerender: false,
+  },
   // 关键：添加自定义入口文件，提前注入 global
   entry: path.resolve(__dirname, "./entry.js"),
   chainWebpack: (config) => {
