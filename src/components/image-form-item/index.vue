@@ -103,7 +103,7 @@
 <script>
   import { previewLocalFile } from "../../utils/filePreview";
   // 引入ImageViewer组件（Element内部组件）
-  import ImageViewer from "element-ui/packages/image/src/image-viewer";
+  import ImageViewer from "./imageViewer/index.vue";
   export default {
     name: "ImageFormItem",
     components: {
@@ -330,7 +330,6 @@
 </script>
 
 <style lang="scss">
-  // $base-color: #537df3;
   .image-form-item {
     display: flex;
     .title {
@@ -342,12 +341,8 @@
       align-items: center;
       display: flex;
       flex-wrap: wrap;
-      /* gap: 12px; */
-      // width: 600px;
       .el-button {
         &--primary {
-          // background: $base-color;
-          // border-color: $base-color;
           color: #fff;
           &:hover {
             opacity: 0.8;
@@ -398,7 +393,6 @@
     .el-dialog {
       border-radius: 8px;
       &__header {
-        // background: $base-color;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         padding: 10px;
