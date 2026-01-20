@@ -53,6 +53,11 @@ module.exports = {
           content: "已复制",
         },
       },
+      {
+        name: "register-element-ui",
+        // 仅在客户端执行（SSR 阶段跳过）
+        clientRootMixin: ".vuepress/mixins/clientRootMixin.js",
+      },
     ],
   ],
   // 关键：添加自定义入口文件，提前注入 global
