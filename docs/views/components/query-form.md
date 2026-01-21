@@ -4,6 +4,7 @@ title: QueryForm 查询表单
 
 # QueryForm 查询表单<badge text="pass" type="success"/> <badge text="0.0.1+"/>
 
+<ClientOnly>
 <query-form-basic/>
 <query-form-item-input/>
 <query-form-item-select/>
@@ -14,3 +15,4 @@ title: QueryForm 查询表单
 <query-form-event/>
 <query-form-slot/>
 <query-form-item-attr/>
+</ClientOnly>

@@ -1,8 +1,15 @@
 import VoButton from "./index.vue";
 
 /* istanbul ignore next */
-VoButton.install = function (Vue) {
-  Vue.component(VoButton.name, VoButton);
+const ComponentPlugin = {
+  install(Vue) {
+    Vue.component(VoButton.name, VoButton);
+  },
 };
 
-export default VoButton;
+// 兼容 CommonJS
+if (typeof window !== "undefined" && window.Vue) {
+  window.Vue.use(ComponentPlugin);
+}
+
+export default ComponentPlugin;

@@ -4,5 +4,7 @@ title: Dialog 弹窗
 
 # Dialog 弹窗 <badge text="pass" type="success"/> <badge text="0.0.1+"/>
 
+<ClientOnly>
 <dialog-basic/>
 <dialog-attr/>
+</ClientOnly>

@@ -1,9 +1,9 @@
 // 定义需要的间距数值（可按需添加，如 5、15、20 等）
 $margin-sizes: 0, 10;
-
+@use "sass:string"; 
 // 混合宏：生成单方向 margin 类（mt/mr/mb/ml）
 @mixin single-margin($direction, $size) {
-  .m#{str-slice($direction, 1, 1)}-#{$size} {
+  .m#{string.slice($direction, 1, 1)}-#{$size} {
     margin-#{$direction}: #{$size}px;
   }
 }
