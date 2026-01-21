@@ -15,35 +15,39 @@ import "./public/index.scss";
 // import ButtonDemo from "./components/button/button-demo.vue";
 
 export default ({ Vue, options, router, siteData }) => {
-  console.log("✅ enhanceApp.js is running");
-  // 只在客户端注册插件和组件
-  if (typeof window !== "undefined") {
-    console.log("✅ enhanceApp.js is running：typeof window !== undefined");
-    // 注册 Element UI
-    const ElementUI = require("element-ui");
-    require("element-ui/lib/theme-chalk/index.css");
-    Vue.use(ElementUI);
-    //
-    const LaunchComponent = require("./components/index.js").default;
-    LaunchComponent(Vue);
-    //
-    const DialogPlugin =
-      require("../../src/components/dialog/index.js").default;
-    Vue.use(DialogPlugin);
-    // Vue.component("button-demo", ButtonDemo);
-    const cryptoPolyfill = require("crypto-browserify");
-    // 手动补充 crypto.constants（复刻 Node.js crypto 的常量）
-    cryptoPolyfill.constants = {
-      RSA_PKCS1_PADDING: 1, // Node.js 中 RSA_PKCS1_PADDING 的值就是 1
-      RSA_SSLV23_PADDING: 2,
-      RSA_NO_PADDING: 3,
-      RSA_PKCS1_OAEP_PADDING: 4,
-    };
-    // 注入全局对象
-    window.process = require("process");
-    window.Buffer = require("buffer").Buffer;
-    // window.crypto = crypto;
-    window.__cryptoPolyfill = cryptoPolyfill;
-    window.global = window;
+  console.log("[Client] Registering components...");
+  // 注入 process（防错）
+  if (typeof process === "undefined") {
+    window.process = { env: {} };
   }
+  // 只在客户端注册插件和组件
+  // if (typeof window !== "undefined") {
+  // console.log("✅ enhanceApp.js is running：typeof window !== undefined");
+  // 注册 Element UI
+  const ElementUI = require("element-ui");
+  require("element-ui/lib/theme-chalk/index.css");
+  Vue.use(ElementUI);
+  //
+  const LaunchComponent = require("./components/index.js").default;
+  LaunchComponent(Vue);
+  //
+  const DialogPlugin = require("../../src/components/dialog/index.js").default;
+  Vue.use(DialogPlugin);
+  // Vue.component("button-demo", ButtonDemo);
+  const cryptoPolyfill = require("crypto-browserify");
+  // 手动补充 crypto.constants（复刻 Node.js crypto 的常量）
+  cryptoPolyfill.constants = {
+    RSA_PKCS1_PADDING: 1, // Node.js 中 RSA_PKCS1_PADDING 的值就是 1
+    RSA_SSLV23_PADDING: 2,
+    RSA_NO_PADDING: 3,
+    RSA_PKCS1_OAEP_PADDING: 4,
+  };
+  // 注入全局对象
+  window.process = require("process");
+  window.Buffer = require("buffer").Buffer;
+  // window.crypto = crypto;
+  window.__cryptoPolyfill = cryptoPolyfill;
+  window.global = window;
+  // }
+  console.log("[Client] Components ready");
 };
