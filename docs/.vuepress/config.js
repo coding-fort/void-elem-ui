@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   title: "VoidElementUI",
   description: "二次封装 Element UI 组件库",
-  base: "/void-elem-ui/", // 基础路径（根据实际部署路径调整）
+  base: "/", // 基础路径（根据实际部署路径调整）
   themeConfig: {
     nav: [
       { text: "首页", link: "/" },
@@ -52,11 +52,6 @@ module.exports = {
         tip: {
           content: "已复制",
         },
-      },
-      {
-        name: "register-element-ui",
-        // 仅在客户端执行（SSR 阶段跳过）
-        clientRootMixin: ".vuepress/mixins/clientRootMixin.js",
       },
     ],
   ],
