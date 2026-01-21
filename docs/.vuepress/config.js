@@ -29,18 +29,18 @@ module.exports = {
         //   "/views/button",
         // ],
       },
-      {
-        title: "工具函数",
-        collapsable: false,
-        // 调用函数：自动生成 views 目录下的所有 md 文件路径
-        // 参数 1：项目根目录（若你的 md 文件都在 docs 下，填 'docs'；若在项目根目录直接填 ''）
-        // 参数 2：要扫描的目录（'views'）
-        children: autoGenerateSidebarChildren("views/utils"),
-        // children: [
-        //   "/views/icon",
-        //   "/views/button",
-        // ],
-      },
+      // {
+      //   title: "工具函数",
+      //   collapsable: false,
+      //   // 调用函数：自动生成 views 目录下的所有 md 文件路径
+      //   // 参数 1：项目根目录（若你的 md 文件都在 docs 下，填 'docs'；若在项目根目录直接填 ''）
+      //   // 参数 2：要扫描的目录（'views'）
+      //   children: autoGenerateSidebarChildren("views/utils"),
+      //   // children: [
+      //   //   "/views/icon",
+      //   //   "/views/button",
+      //   // ],
+      // },
     ],
   },
   plugins: [
