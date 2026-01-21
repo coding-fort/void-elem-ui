@@ -6,4 +6,11 @@ title: Button 按钮
 
 <ClientOnly>
 <button-basic/>
+<button-disable/>
+<button-text/>
+<button-icon/>
+<button-group/>
+<button-loading/>
+<button-size/>
+<button-attr/>
 </ClientOnly>

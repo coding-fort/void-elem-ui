@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   title: "VoidElementUI",
   description: "二次封装 Element UI 组件库",
-  base: "/void-elem-ui/", // 基础路径（根据实际部署路径调整）
+  base: "/", // 基础路径（根据实际部署路径调整）
   themeConfig: {
     nav: [
       { text: "首页", link: "/" },
@@ -29,18 +29,18 @@ module.exports = {
         //   "/views/button",
         // ],
       },
-      // {
-      //   title: "工具函数",
-      //   collapsable: false,
-      //   // 调用函数：自动生成 views 目录下的所有 md 文件路径
-      //   // 参数 1：项目根目录（若你的 md 文件都在 docs 下，填 'docs'；若在项目根目录直接填 ''）
-      //   // 参数 2：要扫描的目录（'views'）
-      //   children: autoGenerateSidebarChildren("views/utils"),
-      //   // children: [
-      //   //   "/views/icon",
-      //   //   "/views/button",
-      //   // ],
-      // },
+      {
+        title: "工具函数",
+        collapsable: false,
+        // 调用函数：自动生成 views 目录下的所有 md 文件路径
+        // 参数 1：项目根目录（若你的 md 文件都在 docs 下，填 'docs'；若在项目根目录直接填 ''）
+        // 参数 2：要扫描的目录（'views'）
+        children: autoGenerateSidebarChildren("views/utils"),
+        // children: [
+        //   "/views/icon",
+        //   "/views/button",
+        // ],
+      },
     ],
   },
   plugins: [

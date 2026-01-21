@@ -127,9 +127,8 @@
         this.$set(this.isShow, index, !this.isShow[index]);
         this.$nextTick(() => {
           if (this.isShow[index] === true) {
-            if (this.codeParent[index])
-              this.codeParent[index].style.height =
-                +this.codeHeightArr[index] + 0 + "px";
+            this.codeParent[index].style.height =
+              +this.codeHeightArr[index] + 0 + "px";
           } else {
             this.codeParent[index].style.height = 0;
           }
