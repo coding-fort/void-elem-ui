@@ -101,6 +101,6 @@ module.exports = {
     ]);
 
     // 6. 可选：添加 source-map 方便调试（出错时能定位到原文件）
-    config.devtool("source-map");
+    // config.devtool("source-map");
   },
 };
