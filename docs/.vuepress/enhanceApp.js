@@ -15,8 +15,10 @@ import "./public/index.scss";
 // import ButtonDemo from "./components/button/button-demo.vue";
 
 export default ({ Vue, options, router, siteData }) => {
+  console.log("✅ enhanceApp.js is running");
   // 只在客户端注册插件和组件
   if (typeof window !== "undefined") {
+    console.log("✅ enhanceApp.js is running：typeof window !== undefined");
     // 注册 Element UI
     const ElementUI = require("element-ui");
     require("element-ui/lib/theme-chalk/index.css");
