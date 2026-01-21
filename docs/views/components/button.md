@@ -4,7 +4,6 @@ title: Button 按钮
 
 # Button 按钮 <badge text="pass" type="success"/> <badge text="0.0.1+"/>
 
-<ClientOnly>
 <button-basic/>
 <button-disable/>
 <button-text/>
@@ -13,4 +12,3 @@ title: Button 按钮
 <button-loading/>
 <button-size/>
 <button-attr/>
-</ClientOnly>
