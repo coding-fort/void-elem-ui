@@ -2,7 +2,7 @@
 title: 数值处理工具集
 ---
 
-# 数值处理工具集<vo-badge text="pass" type="success"/> <vo-badge text="0.0.1+"/>
+# 数值处理工具集<vo-badge text="pass" type="success"/> <vo-badge text="1.0.0"/>
 
 <h3>1. 全局引入</h3>
 

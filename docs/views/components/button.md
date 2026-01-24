@@ -2,7 +2,7 @@
 title: Button 按钮
 ---
 
-# Button 按钮 <vo-badge text="pass" type="success"/> <vo-badge text="0.0.1+"/>
+# Button 按钮 <vo-badge text="pass" type="success"/> <vo-badge text="1.0.0"/>
 
 <h3>单独引用</h3>
 

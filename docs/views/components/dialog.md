@@ -2,7 +2,7 @@
 title: Dialog 弹窗
 ---
 
-# Dialog 弹窗 <vo-badge text="pass" type="success"/> <vo-badge text="0.0.1+"/>
+# Dialog 弹窗 <vo-badge text="pass" type="success"/> <vo-badge text="1.0.0"/>
 
 采用 Element-UI 中的`MessageBox` 的代码驱动模式，整合了`alert`，`confirm`，`prompt`，`dialog` 组件；
 

@@ -2,7 +2,7 @@
 title: 复制到剪贴板
 ---
 
-# 复制到剪贴板<vo-badge text="pass" type="success"/> <vo-badge text="0.0.1+"/>
+# 复制到剪贴板<vo-badge text="pass" type="success"/> <vo-badge text="1.0.0"/>
 
 <h3>全局引入</h3>
 

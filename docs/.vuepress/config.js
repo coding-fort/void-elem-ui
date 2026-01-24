@@ -1,15 +1,21 @@
+// docs/.vuepress/config.js
+
 const { autoGenerateSidebarChildren } = require("./public/utils");
 const path = require("path");
+
+// 根据环境变量自动设置 base
+const isGithubPages = process.env.VUEPRESS_BASE === "github";
+const base = isGithubPages ? "/void-elem-ui/" : "/";
 
 module.exports = {
   // title: "Void-Elem-UI",
   description: "二次封装 Element UI 组件库",
-  base: "/void-elem-ui/", // 基础路径（根据实际部署路径调整）
+  base, // 基础路径（根据实际部署路径调整）
   themeConfig: {
     logo: "/logo.svg",
     nav: [
       { text: "首页", link: "/" },
-      // { text: "指南", link: "/guide/" }, // 新增 MyButton 文档入口
+      { text: "文档", link: "https://coding-fort.github.io/void-elem-ui/" },
     ],
     sidebarDepth: 2,
     sidebar: [
@@ -41,6 +47,10 @@ module.exports = {
         //   "/views/icon",
         //   "/views/button",
         // ],
+      },
+      {
+        title: "更新日志",
+        path: "/changelog",
       },
     ],
   },

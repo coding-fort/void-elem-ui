@@ -2,7 +2,7 @@
 title: 日期处理工具集
 ---
 
-# 日期处理工具集<vo-badge text="pass" type="success"/> <vo-badge text="0.0.1+"/>
+# 日期处理工具集<vo-badge text="pass" type="success"/> <vo-badge text="1.0.0"/>
 
 <h3>1. 全局引入</h3>
 
