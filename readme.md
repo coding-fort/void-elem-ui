@@ -19,7 +19,7 @@
 
 ```bash
 # 先安装 Element UI（核心依赖）
-npm i element-ui@^2.15.13 -S
+npm i element-ui@^2.6.14 -S
 
 # 安装本组件库
 npm i void-elem-ui -S

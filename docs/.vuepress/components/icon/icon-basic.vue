@@ -8,16 +8,10 @@
 </template>
 
 <script>
-  import VoIcon from "../../../../src/components/icon/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoIcon,
-      CompWrap,
-    },
     data() {
       return {
-        codeStr: `
+        codeStr: `<template>
 <vo-icon class="el-icon-share" />
 <vo-icon class="el-icon-delete" />
 <vo-icon class="el-icon-edit" />

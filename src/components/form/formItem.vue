@@ -1,6 +1,5 @@
 <template>
   <div class="vo-form-item">
-    <!-- 初审：初审页可编辑 -->
     <el-form
       ref="form"
       :model="form"
@@ -11,6 +10,11 @@
         :label="label"
         :prop="field"
         class="edit-field"
+        :class="`is-${
+          ['top', 'left', 'right'].includes(labelPosition)
+            ? labelPosition
+            : 'right'
+        }`"
         :label-width="labelWidth"
         :style="calcEditFieldStyle"
       >
@@ -189,6 +193,7 @@
           <!-- 文件上传 -->
           <template v-if="type == 'upload'">
             <vo-image-form-item
+              ref="imageFormItemRef"
               :upload-action="uploadAction"
               :interceptors="interceptors"
               :headers="headers"
@@ -202,7 +207,7 @@
           </template>
           <!-- 插槽 -->
           <template v-if="type == 'slot'">
-            <slot :name="field" :props="$props"></slot>
+            <slot :name="field" :props="{ ...$props, onSlotChange }"></slot>
           </template>
         </template>
       </el-form-item>
@@ -376,6 +381,10 @@
       accept: {
         type: String,
       },
+      //
+      _initValue: {
+        default: "",
+      },
     },
     data() {
       return {
@@ -422,7 +431,7 @@
         let label = this.data[this.field];
         if (["radio", "checkbox", "select"].includes(this.type)) {
           let option = this.options.find(
-            (itm) => itm.value == this.data[this.field]
+            (itm) => itm.value == this.data[this.field],
           );
           option && (label = option.label);
           !option && (label = "");
@@ -436,7 +445,7 @@
         let label = this.curData[this.field];
         if (["radio", "select"].includes(this.type)) {
           let option = this.options.find(
-            (itm) => itm.value == this.curData[this.field]
+            (itm) => itm.value == this.curData[this.field],
           );
           // 说明：在选项中匹配到对应的label 则显示，否则显示"未设置"；
           option && (label = option.label);
@@ -469,7 +478,7 @@
        */
       getDateNow: function () {
         let now = new Date(
-          new Date(Date.now()).toLocaleDateString() + " 23:59:59"
+          new Date(Date.now()).toLocaleDateString() + " 23:59:59",
         ).getTime();
         return () => now;
       },
@@ -579,6 +588,9 @@
     created() {
       this.init();
     },
+    mounted() {
+      // console.log(this.field, this.type, this.$slots);
+    },
     methods: {
       /**
        * 初始化
@@ -593,6 +605,11 @@
         if (["upload"].includes(this.type)) {
           this.$set(this.form, this.field, "");
         }
+        // 插槽控件
+        if (["slot"].includes(this.type)) {
+          this.$set(this.form, this.field, this._initValue);
+        }
+
         // 部分类型需要添加{label: "全部", value: ""} 选项
         // if (this.showAllOption && this.options instanceof Array) {
         //   let existsAllOption = this.options.find(
@@ -671,7 +688,7 @@
         // 日期
         if (
           ["dates", "datetime", "daterange", "datetimerange"].includes(
-            this.type
+            this.type,
           )
         )
           _format += "-dd";
@@ -736,12 +753,25 @@
         if (["monthrange", "daterange", "datetimerange"].includes(this.type)) {
           delete this.form[this.field];
         }
+        // 重置上传控件
+        if (this.type == "upload") {
+          this.$refs.imageFormItemRef.reset();
+        }
       },
       /**
        * 校验
        */
       validate() {
         return this.$refs.form.validate();
+      },
+      /**
+       * 插槽变更触发
+       * @param value
+       */
+      onSlotChange(value) {
+        console.log("onSlotChange:", this.field, value);
+        this.form[this.field] = value;
+        this.$set(this.form, this.field, value);
       },
     },
   };
@@ -772,6 +802,9 @@
         display: flex;
         flex-direction: column;
         width: 100% !important;
+        &.is-top ::v-deep .#{$el-item}__label {
+          padding: 0;
+        }
       }
 
       // 表单标签样式

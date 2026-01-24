@@ -16,12 +16,15 @@
             :key="idx"
             :options="itm.options"
             :type="itm.type"
+            :direction="itm.direction"
+            :label-position="itm.labelPosition"
             :rows="itm.rows"
             :rules="rules"
             :len="itm.len"
             :label="itm.label"
             :field="itm.key"
             :multiple="itm.multiple"
+            :_init-value="itm._initValue"
             :picker="itm.picker"
             :disabled="itm.disabled"
             :date-picker="itm.datePicker"
@@ -35,12 +38,14 @@
           >
             <!-- 跨组件插槽 -->
             <template
-              v-if="itm.TYPE == 'slot'"
-              :slot="itm.KEY"
+              v-if="itm.type == 'slot'"
+              :slot="itm.key"
               slot-scope="{ props }"
             >
-              <slot :name="itm.KEY" :props="{ ...props, form, key: itm.KEY }">
-              </slot>
+              <slot
+                :name="itm.key"
+                :props="{ ...props, form, key: itm.key }"
+              ></slot>
             </template>
           </vo-form-item>
         </template>
@@ -179,9 +184,6 @@
        * 查询条件变动
        */
       handleChangeField({ value, key }) {
-        // let field = arguments[1];
-        // console.log("change:index", this.form);
-        // this.form[key] = value;
         this.$set(this.form, key, value);
         // 说明：表单值变动，重置查询按钮标识
         this.$emit("change", this.form, { value, key });
@@ -190,9 +192,8 @@
        * 重置
        */
       handleReset() {
-        // let refs = this.$refs.voFormItemRef;
-        // console.log(refs);
         this.$refs.voFormItemRef.forEach((ref) => ref.resetFields());
+        this.$emit("reset");
       },
       /**
        * 提交

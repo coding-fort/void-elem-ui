@@ -2,7 +2,13 @@
 title: ImageUpload 图片上传
 ---
 
-# ImageUpload 图片上传 <badge text="pass" type="success"/> <badge text="0.0.1+"/>
+# ImageUpload 图片上传 <vo-badge text="pass" type="success"/> <vo-badge text="0.0.1+"/>
+
+## 单独引用
+
+```js
+import { ImageUpload } from "void-elem-ui";
+```
 
 <ClientOnly>
 <image-upload-basic/>

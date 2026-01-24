@@ -5,17 +5,11 @@
 </template>
 
 <script>
-  import VoImageUpload from "../../../../src/components/image-upload/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      CompWrap,
-      VoImageUpload,
-    },
     data() {
       return {
         desc: ``,
-        codeStr: `
+        codeStr: `<template>
 <vo-image-upload upload-url="uploadUrl"></vo-image-upload>
         `,
         uploadUrl: "https://jsonplaceholder.typicode.com/posts/",

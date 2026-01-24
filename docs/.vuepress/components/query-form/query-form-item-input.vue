@@ -10,6 +10,7 @@
       <vo-query-form-item
         :label="inputField.label"
         :field="inputField.key"
+        label-position="top"
         @change="handleChangeField"
       />
       <p>当前值：{{ form[inputField.key] }}</p>
@@ -20,6 +21,7 @@
         :label="inputrangerField.label"
         :field="inputrangerField.key"
         :type="inputrangerField.type"
+        label-position="top"
         @change="handleChangeField"
       />
       <p>当前值：{{ form[inputrangerField.key] }}</p>
@@ -31,6 +33,7 @@
         :field="autocompleteField.key"
         :type="autocompleteField.type"
         :options="autocompleteField.options"
+        label-position="top"
         @change="handleChangeField"
       />
       <p>当前值：{{ form[autocompleteField.key] }}</p>
@@ -39,22 +42,17 @@
 </template>
 
 <script>
-  import VoQueryFormItem from "../../../../src/components/queryForm/formItem.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoQueryFormItem,
-      CompWrap,
-    },
     data() {
       return {
         desc: "<code>QueryForm</code> 查询表单组件，内部使用<code>query-form-item</code> 组件来渲染不同表单组件；",
-        codeStr: `
+        codeStr: `<template>
 <div class="item">
   <b>Input 输入框</b>
   <vo-query-form-item
     :label="inputField.label"
     :field="inputField.key"
+    label-position="top"
     @change="handleChangeField"
   />
   <p>当前值：{{ form[inputField.key] }}</p>
@@ -65,6 +63,7 @@
     :label="inputrangerField.label"
     :field="inputrangerField.key"
     :type="inputrangerField.type"
+    label-position="top"
     @change="handleChangeField"
   />
   <p>当前值：{{ form[inputrangerField.key] }}</p>
@@ -76,50 +75,51 @@
     :field="autocompleteField.key"
     :type="autocompleteField.type"
     :options="autocompleteField.options"
+    label-position="top"
     @change="handleChangeField"
   />
   <p>当前值：{{ form[autocompleteField.key] }}</p>
 </div>
 
-  export default {
-    data(){
-      return {
-        inputField: {
-          label: "账户编号",
-          key: "accountNo",
-          _key: "accountNo",
-        },
-        inputrangerField: {
-          label: "数量",
-          key: "count",
-          _key: "count",
-          type: "inputrange",
-        },
-        autocompleteField: {
-          label: "币种",
-          key: "currency",
-          _key: "currency",
-          type: "autocomplete",
-          options: [
-            { label: "CNY", value: "CNY" },
-            { label: "USD", value: "USD" },
-            { label: "JPY", value: "JPY" },
-          ],
-        },
-        form: {
-          accountNo: "",
-          count: "",
-          currency: "",
-        },
-      }
-    },
-    methods: {
-      handleChangeField({ value, key }) {
-        this.form[key] = value;
-        if (!value) this.$message.success("值已经清空");
+export default {
+  data(){
+    return {
+      inputField: {
+        label: "账户编号",
+        key: "accountNo",
+        _key: "accountNo",
       },
+      inputrangerField: {
+        label: "数量",
+        key: "count",
+        _key: "count",
+        type: "inputrange",
+      },
+      autocompleteField: {
+        label: "币种",
+        key: "currency",
+        _key: "currency",
+        type: "autocomplete",
+        options: [
+          { label: "CNY", value: "CNY" },
+          { label: "USD", value: "USD" },
+          { label: "JPY", value: "JPY" },
+        ],
+      },
+      form: {
+        accountNo: "",
+        count: "",
+        currency: "",
+      },
+    }
+  },
+  methods: {
+    handleChangeField({ value, key }) {
+      this.form[key] = value;
+      if (!value) this.$message.success("值已经清空");
     },
-  }
+  },
+}
   `,
         inputField: {
           label: "账户编号",

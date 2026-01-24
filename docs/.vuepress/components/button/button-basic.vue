@@ -39,17 +39,12 @@
 </template>
 
 <script>
-  import VoButton from "../../../../src/components/button/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      CompWrap,
-      VoButton,
-    },
     data() {
       return {
         desc: `基础的按钮用法。使用<code>type</code>、<code>plain</code>、<code>round</code>和<code>circle</code>属性来定义 <b>Button</b> 的样式。`,
-        codeStr: `<el-row>
+        codeStr: `<template>
+<el-row>
   <vo-button>默认按钮</vo-button>
   <vo-button type="primary">主要按钮</vo-button>
   <vo-button type="success">成功按钮</vo-button>

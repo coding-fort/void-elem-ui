@@ -18,14 +18,8 @@
   </div>
 </template>
 <script>
-  import VoTable from "../../../../src/components/table/index.vue";
-  import VoTableColumn from "../../../../src/components/table-column/index.vue";
-
   export default {
-    components: {
-      VoTable,
-      VoTableColumn,
-    },
+    name: "AttrTable",
     props: {
       title: {
         type: String,

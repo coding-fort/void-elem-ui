@@ -46,9 +46,9 @@ function openDialog(options = {}) {
 
 const DialogPlugin = {
   install(Vue) {
-    Vue.prototype.$dialog = openDialog;
+    Vue.prototype.$vdialog = openDialog;
   },
 };
 
 export default DialogPlugin;
-export { openDialog as $dialog };
+export { openDialog as dialog };

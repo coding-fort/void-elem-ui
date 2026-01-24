@@ -22,19 +22,11 @@
   </comp-wrap>
 </template>
 <script>
-  import VoRow from "../../../../src/components/row/index.vue";
-  import VoCol from "../../../../src/components/col/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoRow,
-      VoCol,
-      CompWrap,
-    },
     data() {
       return {
         desc: `支持偏移指定的栏数。通过制定 col 组件的 <code>offset</code> 属性可以指定分栏偏移的栏数。`,
-        codeStr: `
+        codeStr: `<template>
 <el-row :gutter="20">
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="6" :offset="6"><div class="grid-content bg-purple"></div></el-col>

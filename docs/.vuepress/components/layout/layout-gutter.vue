@@ -9,19 +9,11 @@
   </comp-wrap>
 </template>
 <script>
-  import VoRow from "../../../../src/components/row/index.vue";
-  import VoCol from "../../../../src/components/col/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoRow,
-      VoCol,
-      CompWrap,
-    },
     data() {
       return {
         desc: `分栏之间存在间隔。Row 组件 提供 <code>gutter</code> 属性来指定每一栏之间的间隔，默认间隔为 0。`,
-        codeStr: `
+        codeStr: `<template>
 <el-row :gutter="20">
     <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>

@@ -21,6 +21,8 @@
             :form="form"
             :rules="rules"
             :len="itm.len || itm.LEN"
+            :label-width="itm.labelWidth || labelWidth"
+            :label-position="itm.labelPosition || labelPosition"
             :label="itm.label || itm.LABEL"
             :field="itm.key || itm.KEY"
             :multiple="itm.multiple || itm.MULTIPLE"
@@ -87,6 +89,14 @@
         type: Boolean,
         default: true,
       },
+      labelWidth: {
+        type: String,
+        default: "150px",
+      },
+      labelPosition: {
+        type: "right" | "left" | "top",
+        default: "right",
+      },
     },
 
     data() {
@@ -149,7 +159,7 @@
             let options = item.options || item.OPTIONS;
             if (!options) return item;
             let defaultOption = options.find(
-              (option) => option.value === "" || option.label === "全部"
+              (option) => option.value === "" || option.label === "全部",
             );
             if (!defaultOption) {
               options.unshift({ value: "", label: "全部" });

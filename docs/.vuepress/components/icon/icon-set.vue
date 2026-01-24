@@ -17,7 +17,6 @@
 
 <script>
   import officialIcons from "./officialIcon";
-  import copyToClipboard from "../../../../src/utils/copyToClipboard";
   export default {
     data() {
       return {
@@ -26,7 +25,7 @@
     },
     methods: {
       handleClick(iconName) {
-        copyToClipboard(iconName);
+        this.$vutil.copyToClipboard(iconName);
         this.$message.success(`Icon Name: ${iconName} 已复制到剪贴板`);
       },
     },

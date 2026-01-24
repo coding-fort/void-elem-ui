@@ -31,17 +31,10 @@
 </template>
 
 <script>
-  import VoButton from "../../../../src/components/button/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
-  import { reverseTransformData } from "../../../../src/utils/fieldTransfer";
   export default {
-    components: {
-      CompWrap,
-      VoButton,
-    },
     data() {
       return {
-        desc: ``,
+        desc: `<code>void-elem-ui</code> 内置工具类：<b>reverseTransformData</b>`,
         codeStr: `
 <p>1.映射配置表：key=前端字段，value=后端字段</p>
 <el-input class="demo" v-model="calcReverseUserMap" type="textarea" :rows="2" disabled />
@@ -51,7 +44,7 @@
 <el-input class="demo" v-model="transferData" type="textarea" :rows="2" disabled />
 <vo-button class="mt-10" @click="handleTransfer" type="primary" size="mini">转换</vo-button>
 
-import { reverseTransformData } from "@/src/utils/fieldTransfer";
+import { vutil as $vutil } from "void-elem-ui";
 
 export default {
     data(){
@@ -79,7 +72,7 @@ export default {
     },
     methods: {
       handleTransfer() {
-        let _data = reverseTransformData(this.formData, this.reverseUserMap);
+        let _data = $vutil.data.reverseTransformData(this.formData, this.reverseUserMap);
         this.transferData = JSON.stringify(_data);
       },
     }
@@ -108,12 +101,13 @@ export default {
     },
     methods: {
       handleTransfer() {
-        let _data = reverseTransformData(this.formData, this.reverseUserMap);
+        let _data = this.$vutil.data.reverseTransformData(
+          this.formData,
+          this.reverseUserMap,
+        );
         this.transferData = JSON.stringify(_data);
         this.$message.success(`转换成功`);
       },
     },
   };
 </script>
-
-<style lang="scss" scoped></style>

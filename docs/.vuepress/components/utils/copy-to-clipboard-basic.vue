@@ -1,44 +1,41 @@
 <template>
-  <comp-wrap title="基础方法" :desc="desc" :code-str="codeStr">
+  <comp-wrap title="" :desc="desc" :code-str="codeStr">
     <el-input
       v-model="value"
       type="textarea"
       :rows="2"
       placeholder="请输入内容"
     ></el-input>
-    <vo-button class="mt-10" @click="handleCopy" type="primary" size="mini">
-      复制
-    </vo-button>
+    <vo-button
+      class="mt-10"
+      @click="handleCopy"
+      type="primary"
+      size="mini"
+      text="复制"
+    />
   </comp-wrap>
 </template>
 
 <script>
-  import VoButton from "../../../../src/components/button/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
-  import copyToClipboard from "../../../../src/utils/copyToClipboard";
+  //
   export default {
-    components: {
-      CompWrap,
-      VoButton,
-    },
     data() {
       return {
         desc: ``,
-        codeStr: `
+        codeStr: `<template>
 <el-input
     v-model="value"
     type="textarea"
     :rows="2"
     placeholder="请输入内容"
-></el-input>
-<vo-button @click="handleCopy">复制</vo-button>
+/>
+<vo-button @click="handleCopy" text="复制" />
 
-import copyToClipboard from "@/src/utils/copyToClipboard";
-
+import { vutil as $vutil } from "void-elem-ui";
 export default {
     methods: {
       handleCopy() {
-        copyToClipboard(this.value);
+        $vutil.copyToClipboard(this.value);
       },
     }
 }
@@ -48,11 +45,9 @@ export default {
     },
     methods: {
       handleCopy() {
-        copyToClipboard(this.value);
+        this.$vutil.copyToClipboard(this.value);
         this.$message.success(`复制成功，复制文本为：${this.value}`);
       },
     },
   };
 </script>
-
-<style lang="scss" scoped></style>

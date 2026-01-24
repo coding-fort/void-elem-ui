@@ -2,13 +2,14 @@ const { autoGenerateSidebarChildren } = require("./public/utils");
 const path = require("path");
 
 module.exports = {
-  title: "VoidElementUI",
+  // title: "Void-Elem-UI",
   description: "二次封装 Element UI 组件库",
   base: "/void-elem-ui/", // 基础路径（根据实际部署路径调整）
   themeConfig: {
+    logo: "/logo.svg",
     nav: [
       { text: "首页", link: "/" },
-      { text: "指南", link: "/guide/" }, // 新增 MyButton 文档入口
+      // { text: "指南", link: "/guide/" }, // 新增 MyButton 文档入口
     ],
     sidebarDepth: 2,
     sidebar: [

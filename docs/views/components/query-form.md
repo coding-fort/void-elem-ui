@@ -2,7 +2,13 @@
 title: QueryForm 查询表单
 ---
 
-# QueryForm 查询表单<badge text="pass" type="success"/> <badge text="0.0.1+"/>
+# QueryForm 查询表单<vo-badge text="pass" type="success"/> <vo-badge text="0.0.1+"/>
+
+## 单独引用
+
+```js
+import { QueryForm } from "void-elem-ui";
+```
 
 <ClientOnly>
 <query-form-basic/>

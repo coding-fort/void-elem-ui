@@ -9,17 +9,7 @@
 </template>
 
 <script>
-  import VoTable from "../../../../src/components/table/index.vue";
-  import VoButtom from "../../../../src/components/button/index.vue";
-  import VoButton from "../../../../src/components/button/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoTable,
-      VoButtom,
-      VoButton,
-      CompWrap,
-    },
     data() {
       const accountType = {
         label: "账户类型",
@@ -39,7 +29,7 @@
         ],
       };
       return {
-        codeStr: `
+        codeStr: `<template>
 <vo-table ref="es-table" :columns="tableColumns" :response="tableResponse">
   <template slot="operate" slot-scope="{ row }">
     <vo-button text="详情" type="text" @click="handleDetail(row)" />
@@ -107,7 +97,7 @@ export default {
         };
       },
       handleDetail(row) {
-        this.$dialog({
+        this.$vdialog({
           title: "详情",
           content: JSON.stringify(row),
           width: 800,
@@ -244,7 +234,7 @@ export default {
         };
       },
       handleDetail(row) {
-        this.$dialog({
+        this.$vdialog({
           title: "详情",
           content: JSON.stringify(row),
           width: 800,
@@ -254,4 +244,4 @@ export default {
   };
 </script>
 
-<style lang="scss" scoped></style>
+

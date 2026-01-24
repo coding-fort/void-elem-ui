@@ -17,19 +17,11 @@
   </comp-wrap>
 </template>
 <script>
-  import VoRow from "../../../../src/components/row/index.vue";
-  import VoCol from "../../../../src/components/col/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoRow,
-      VoCol,
-      CompWrap,
-    },
     data() {
       return {
         desc: `参照了 Bootstrap 的 响应式设计，预设了五个响应尺寸：xs、sm、md、lg 和 xl。`,
-        codeStr: `
+        codeStr: `<template>
 <el-row :gutter="10">
   <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div class="grid-content bg-purple"></div></el-col>
   <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div class="grid-content bg-purple-light"></div></el-col>

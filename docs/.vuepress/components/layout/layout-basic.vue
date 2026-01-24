@@ -61,18 +61,10 @@
   </comp-wrap>
 </template>
 <script>
-  import VoRow from "../../../../src/components/row/index.vue";
-  import VoCol from "../../../../src/components/col/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoRow,
-      VoCol,
-      CompWrap,
-    },
     data() {
       return {
-        codeStr: `
+        codeStr: `<template>
 <vo-row>
     <vo-col :span="24">
         <div class="grid-content bg-purple-dark"></div>

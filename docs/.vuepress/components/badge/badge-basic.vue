@@ -32,17 +32,11 @@
 </template>
 
 <script>
-  import VoBadge from "../../../../src/components/badge/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoBadge,
-      CompWrap,
-    },
     data() {
       return {
         desc: `展示新消息数量。`,
-        codeStr: `
+        codeStr: `<template>
 <vo-badge :value="12" class="item">
   <el-button size="small">评论</el-button>
 </vo-badge>

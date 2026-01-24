@@ -18,19 +18,11 @@
   </comp-wrap>
 </template>
 <script>
-  import VoRow from "../../../../src/components/row/index.vue";
-  import VoCol from "../../../../src/components/col/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoRow,
-      VoCol,
-      CompWrap,
-    },
     data() {
       return {
         desc: `通过基础的 1/24 分栏任意扩展组合形成较为复杂的混合布局。`,
-        codeStr: `
+        codeStr: `<template>
 <el-row :gutter="20">
   <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>

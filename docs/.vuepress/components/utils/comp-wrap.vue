@@ -1,6 +1,6 @@
 <template>
   <div class="comp-wrap-container" ref="wrap">
-    <h2>{{ title }}</h2>
+    <h2 v-if="title">{{ title }}</h2>
     <p v-html="desc"></p>
     <div class="component-wrapper">
       <div class="component-wrapper-demo">
@@ -24,7 +24,7 @@
 
         <div class="code-content-height">
           <pre>
-            <code class="html">
+            <code :class="codeType">
                {{ codeComp }}
             </code>
           </pre>
@@ -52,9 +52,10 @@
   import copyToClipboard from "../../../../src/utils/copyToClipboard";
 
   import hljs from "highlight.js";
-  import "highlight.js/styles/github.css";
+  import "highlight.js/styles/atom-one-light.css";
 
   export default {
+    name: "CompWrap",
     components: {
       VoIcon,
       VoButton,
@@ -63,11 +64,15 @@
     props: {
       title: {
         type: String,
-        default: "基础方法",
+        default: "",
       },
       desc: {
         type: String,
         default: "",
+      },
+      codeType: {
+        type: String,
+        default: "js", // html / js
       },
       codeStr: {
         type: String,
@@ -151,6 +156,7 @@
 
 <style lang="scss">
   .comp-wrap-container {
+    // margin-top: 40px;
     pre {
       margin: 0; /* 清除默认外边距（可选） */
       padding: 0 1.5em; /* 上下内边距保留，左右内边距设为 0 */
@@ -163,6 +169,14 @@
         position: absolute;
         right: 5px;
         top: 5px;
+      }
+    }
+    .component-wrapper-demo {
+      h3 {
+        margin-top: 0;
+      }
+      hr {
+        margin: 20px 0;
       }
     }
   }

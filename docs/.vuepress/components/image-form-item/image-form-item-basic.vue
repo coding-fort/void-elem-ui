@@ -16,19 +16,15 @@
 </template>
 
 <script>
-  import CompWrap from "../utils/comp-wrap.vue";
-  import VoButton from "../../../../src/components/button/index.vue";
   import VoImageFormItem from "../../../../src/components/image-form-item/index.vue";
   export default {
     components: {
-      CompWrap,
-      VoButton,
       VoImageFormItem,
     },
     data() {
       return {
         desc: `表单用图片上传控件。`,
-        codeStr: `
+        codeStr: `<template>
 <vo-image-form-item title="上传图片" :upload-action="uploadAction" :interceptors="interceptors" @clear="handleClear" />
 <vo-button text="提交" @click="handleSubmit" />
 
@@ -42,7 +38,10 @@
         interceptors: {},
       },
       created() {
-        this.interceptors.success = this.handleUploadSuccess;
+        this.interceptors.success = () => {
+          // 模拟返回结果
+          this.form.avatar = "https://picsum.photos/200/300";
+        };
       },
       methods: {
         handleSubmit(form) {
@@ -50,13 +49,10 @@
             this.$message.error("请上传图片");
             return;
           }
-          this.$dialog({
+          this.$vdialog({
             title: "上传内容",
             content: JSON.stringify(this.form),
           });
-        },
-        handleUploadSuccess(response) {
-          this.form.avatar = "https://picsum.photos/200/300";
         },
         handleClear() {
           this.form.avatar = "";
@@ -73,7 +69,9 @@
       };
     },
     created() {
-      this.interceptors.success = this.handleUploadSuccess;
+      this.interceptors.success = () => {
+        this.form.avatar = "https://picsum.photos/200/300";
+      };
     },
     methods: {
       handleSubmit(form) {
@@ -81,13 +79,10 @@
           this.$message.error("请上传图片");
           return;
         }
-        this.$dialog({
+        this.$vdialog({
           title: "上传内容",
           content: JSON.stringify(this.form),
         });
-      },
-      handleUploadSuccess(response) {
-        this.form.avatar = "https://picsum.photos/200/300";
       },
       handleClear() {
         this.form.avatar = "";
@@ -95,5 +90,3 @@
     },
   };
 </script>
-
-<style lang="scss" scoped></style>

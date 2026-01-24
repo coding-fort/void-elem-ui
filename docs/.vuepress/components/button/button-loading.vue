@@ -5,18 +5,12 @@
 </template>
 
 <script>
-  import VoButton from "../../../../src/components/button/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
-
   export default {
-    components: {
-      CompWrap,
-      VoButton,
-    },
     data() {
       return {
         desc: `点击按钮后进行数据加载操作，在按钮上显示加载状态。要设置为 loading 状态，只要设置<code>loading</code>属性为<code>true</code>即可。`,
-        codeStr: `<vo-button type="primary" :loading="true">加载中</vo-button>`,
+        codeStr: `<template>
+<vo-button type="primary" :loading="true">加载中</vo-button>`,
       };
     },
   };

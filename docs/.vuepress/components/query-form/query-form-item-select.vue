@@ -12,6 +12,7 @@
         :field="radioField.key"
         :type="radioField.type"
         :options="radioField.options"
+        label-position="top"
         @change="handleChangeField"
       />
       <p>当前值：{{ form[radioField.key] }}</p>
@@ -23,6 +24,7 @@
         :field="checkboxField.key"
         :type="checkboxField.type"
         :options="checkboxField.options"
+        label-position="top"
         @change="handleChangeField"
       />
       <p>当前值：{{ form[checkboxField.key] }}</p>
@@ -34,6 +36,7 @@
         :field="selectField.key"
         :type="selectField.type"
         :options="selectField.options"
+        label-position="top"
         @change="handleChangeField"
       />
       <p>当前值：{{ form[selectField.key] }}</p>
@@ -42,13 +45,7 @@
 </template>
 
 <script>
-  import VoQueryFormItem from "../../../../src/components/queryForm/formItem.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoQueryFormItem,
-      CompWrap,
-    },
     data() {
       const accountStatus = {
         label: "账户状态",
@@ -88,7 +85,7 @@
       };
       return {
         desc: "<code>QueryForm</code> 查询表单组件，内部使用<code>query-form-item</code> 组件来渲染不同表单组件；",
-        codeStr: `
+        codeStr: `<template>
 <div class="item">
   <b>Radio 单选框</b>
   <vo-query-form-item
@@ -96,6 +93,7 @@
     :field="radioField.key"
     :type="radioField.type"
     :options="radioField.options"
+    label-position="top"
     @change="handleChangeField"
   />
   <p>当前值：{{ form[radioField.key] }}</p>
@@ -107,6 +105,7 @@
     :field="checkboxField.key"
     :type="checkboxField.type"
     :options="checkboxField.options"
+    label-position="top"
     @change="handleChangeField"
   />
   <p>当前值：{{ form[checkboxField.key] }}</p>
@@ -118,52 +117,53 @@
     :field="selectField.key"
     :type="selectField.type"
     :options="selectField.options"
+    label-position="top"
     @change="handleChangeField"
   />
   <p>当前值：{{ form[selectField.key] }}</p>
 </div>
 
-  export default {
-    data(){
-      return {
-        radioField: {
-          label: "账户状态",
-          key: "status",
-          _key: "accountStatus",
-          type: "radio",
-          options: accountStatus.options,
-        },
-        checkboxField: {
-          label: "支持币种",
-          key: "currency",
-          _key: "currency",
-          type: "checkbox",
-          options: [
-            { label: "CNY", value: "CNY" },
-            { label: "USD", value: "USD" },
-            { label: "JPY", value: "JPY" },
-          ],
-        },
-        selectField: {
-          label: "交易类型",
-          key: "tradeType",
-          _key: "tradeType",
-          type: "select",
-          options: tradeType.options,
-        },
-        form: {
-          status: "",
-          currency: "",
-          tradeType: "",
-        },
-      }
-    },
-    methods: {
-      handleChangeField({ value, key }) {
-        this.form[key] = value;
+export default {
+  data(){
+    return {
+      radioField: {
+        label: "账户状态",
+        key: "status",
+        _key: "accountStatus",
+        type: "radio",
+        options: accountStatus.options,
       },
+      checkboxField: {
+        label: "支持币种",
+        key: "currency",
+        _key: "currency",
+        type: "checkbox",
+        options: [
+          { label: "CNY", value: "CNY" },
+          { label: "USD", value: "USD" },
+          { label: "JPY", value: "JPY" },
+        ],
+      },
+      selectField: {
+        label: "交易类型",
+        key: "tradeType",
+        _key: "tradeType",
+        type: "select",
+        options: tradeType.options,
+      },
+      form: {
+        status: "",
+        currency: "",
+        tradeType: "",
+      },
+    }
+  },
+  methods: {
+    handleChangeField({ value, key }) {
+      this.form[key] = value;
     },
-  }
+  },
+}
   `,
         radioField: {
           label: "账户状态",

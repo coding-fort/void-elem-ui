@@ -3,12 +3,8 @@
 </template>
 <script>
   import { queryFormItemAttrs } from "./attrs";
-  import AttrTable from "../utils/attr-table.vue";
 
   export default {
-    components: {
-      AttrTable,
-    },
     data() {
       return {
         attrs: queryFormItemAttrs,

@@ -73,6 +73,27 @@ export const columnObjectAttrs = [
     default: "input",
   },
   {
+    config: "_initValue",
+    desc: "初始值，对于个别插槽组件，例如日期范围组件，其初始值需要空数组，则通过该属性设置，默认为''，type=slot 有效",
+    type: "any",
+    optional: "-",
+    default: "-",
+  },
+  {
+    config: "direction",
+    desc: "TODO:布局方式",
+    type: "string",
+    optional: "column | row",
+    default: "row",
+  },
+  {
+    config: "labelPosition",
+    desc: "标签和输入框布局方式",
+    type: "string",
+    optional: "right | left | top",
+    default: "right",
+  },
+  {
     config: "options",
     desc: "枚举列枚举项",
     type: "array<{label: string, value: number|string}>",
@@ -244,6 +265,11 @@ export const events = [
     name: "change",
     desc: "单字段值变更时触发",
     params: "Function(form<object>, field<{value, key}>)",
+  },
+  {
+    name: "reset",
+    desc: "点击重置按钮，重置表单时触发",
+    params: "Function()",
   },
 ];
 export const methods = [

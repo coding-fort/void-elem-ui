@@ -28,6 +28,13 @@ export const attrs = [
     default: "-",
   },
   {
+    config: "type",
+    desc: "消息类型",
+    type: "string",
+    optional: "success/error/info/warning",
+    default: "-",
+  },
+  {
     config: "initData",
     desc: "表单回显数据（仅 content 为组件时生效）",
     type: "object",
@@ -54,6 +61,20 @@ export const attrs = [
     type: "string",
     optional: "-",
     default: "取消",
+  },
+  {
+    config: "showCancelButton",
+    desc: "是否显示取消按钮",
+    type: "boolean",
+    optional: "-",
+    default: "true",
+  },
+  {
+    config: "showConfirmButton",
+    desc: "是否显示确定按钮",
+    type: "boolean",
+    optional: "-",
+    default: "true",
   },
   {
     config: "showClose",

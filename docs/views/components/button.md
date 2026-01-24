@@ -2,7 +2,13 @@
 title: Button 按钮
 ---
 
-# Button 按钮 <badge text="pass" type="success"/> <badge text="0.0.1+"/>
+# Button 按钮 <vo-badge text="pass" type="success"/> <vo-badge text="0.0.1+"/>
+
+## 单独引用
+
+```js
+import { Button } from "void-elem-ui";
+```
 
 <ClientOnly>
 <button-basic/>

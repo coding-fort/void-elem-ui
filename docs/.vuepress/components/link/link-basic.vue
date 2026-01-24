@@ -14,17 +14,11 @@
 </template>
 
 <script>
-  import VoLink from "../../../../src/components/link/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   export default {
-    components: {
-      VoLink,
-      CompWrap,
-    },
     data() {
       return {
         desc: `基础的文字链接用法。`,
-        codeStr: `
+        codeStr: `<template>
 <div>
   <vo-link href="https://element.eleme.io" target="_blank">默认链接</vo-link>
   <vo-link type="primary">主要链接</vo-link>

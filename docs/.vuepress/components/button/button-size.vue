@@ -16,18 +16,12 @@
 </template>
 
 <script>
-  import VoButton from "../../../../src/components/button/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
-
   export default {
-    components: {
-      CompWrap,
-      VoButton,
-    },
     data() {
       return {
         desc: `Button 组件提供除了默认值以外的三种尺寸，可以在不同场景下选择合适的按钮尺寸。额外的尺寸：<code>medium</code>、<code>small</code>、<code>mini</code>，通过设置<code>size</code>属性来配置它们。`,
-        codeStr: `<el-row>
+        codeStr: `<template>
+<el-row>
   <vo-button>默认按钮</vo-button>
   <vo-button size="medium">中等按钮</vo-button>
   <vo-button size="small">小型按钮</vo-button>

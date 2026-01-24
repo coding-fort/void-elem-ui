@@ -1,5 +1,9 @@
 <template>
-  <comp-wrap title="RSA 加密（RSATool.encrypt）" :desc="desc" :code-str="codeStr">
+  <comp-wrap
+    title="RSA 加密（encrypt）"
+    :desc="desc"
+    :code-str="codeStr"
+  >
     <p class="mt-0 mb-10">
       1.RSA 公钥
       <span style="font-size: 12px; color: red; margin-left: 20px">
@@ -37,24 +41,21 @@
 </template>
 
 <script>
-  import VoButton from "../../../../src/components/button/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
   import RSATool from "../../../../src/utils/rsaUtils";
-  import copyToClipboard from "../../../../src/utils/copyToClipboard";
 
   export default {
-    components: {
-      CompWrap,
-      VoButton,
-    },
     data() {
       return {
         desc: ``,
         codeStr: `
-import RSATool from "@/src/utils/rsaTool";
+import { vutil as $vutil } from "void-elem-ui";
 
 /* this.calcData 为JSON 字符串，不是像JSON 字符串的字符串 */
-this.encrypted = await RSATool.encrypt(this.calcData, this.publicKey);
+/* var a = {name: 'zhangsan', age: 18} */
+/* 正确：'{"name":"zhangsan","age":18}' */
+/* 错误：'"{\\"name\\":\\"zhangsan\\",\\"age\\":18}"' */
+
+this.encrypted = await $vutil.rsa.encrypt(this.calcData, this.publicKey);
           `,
         publicKey: `MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDMEvh9wvRTzB/olOKin+xdZJKDsLa0s29Jv17dVQBe7KtL0JLYIkUGPaE9pc58fSYhIAMAn2dgEdzA9nA7FzU7zVq7tQ09VQ4EcjFJh/m4S7v895TL38Svh3VrBO3DSkFp85HqAumSnKhgrDMC4IRYQ6lplF9vxs+EvHqbb7a3RwIDAQAB`,
         data: {
@@ -78,14 +79,14 @@ this.encrypted = await RSATool.encrypt(this.calcData, this.publicKey);
     methods: {
       async handleEncrypt() {
         try {
-          this.encrypted = await RSATool.encrypt(this.calcData, this.publicKey);
+          this.encrypted = await this.$vutil.rsa.encrypt(this.calcData, this.publicKey);
           this.$message.success(`加密成功`);
         } catch (error) {
           this.$message.error(`加密失败`);
         }
       },
       handleCopy() {
-        copyToClipboard(this.encrypted);
+        this.$vutil.copyToClipboard(this.encrypted);
         this.$message.success(`密文复制成功`);
       },
       handleReset() {

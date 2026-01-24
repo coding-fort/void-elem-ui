@@ -14,11 +14,8 @@
 </template>
 
 <script>
-  // import { Pagination } from "element-ui";
   export default {
-    // components: {
-    //   "el-pagination": Pagination,
-    // },
+    name: "VoPager",
     inject: {
       // 说明：实时获取当前查询条件
       getQueryForm: {

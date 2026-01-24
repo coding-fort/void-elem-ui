@@ -1,8 +1,23 @@
 <template>
   <div class="vo-query-form-item">
-    <!-- 初审：初审页可编辑 -->
-    <el-form ref="form" :model="form" :rules="rules">
-      <el-form-item :label="label" :prop="field" class="edit-field">
+    <el-form
+      ref="form"
+      :model="form"
+      :rules="rules"
+      :label-position="labelPosition"
+    >
+      <el-form-item
+        :label="label"
+        :prop="field"
+        :label-width="labelWidth"
+        :style="customStyle"
+        class="edit-field"
+        :class="`is-${
+          ['top', 'left', 'right'].includes(labelPosition)
+            ? labelPosition
+            : 'right'
+        }`"
+      >
         <!-- 插槽 -->
         <template>
           <!-- 输入框 -->
@@ -162,7 +177,7 @@
           </template>
           <!-- 插槽 -->
           <template v-if="type == 'slot'">
-            <slot :name="field" :props="$props"></slot>
+            <slot :name="field" :props="{ ...$props, onSlotChange }"></slot>
           </template>
         </template>
       </el-form-item>
@@ -174,6 +189,7 @@
 <script>
   import VoInputRange from "./inputRange.vue";
   export default {
+    name: "VoQueryFormItem",
     components: {
       VoInputRange,
     },
@@ -222,7 +238,14 @@
         type: Boolean,
         default: false,
       },
-
+      labelWidth: {
+        type: String,
+        default: "150px",
+      },
+      labelPosition: {
+        type: "right" | "left" | "top",
+        default: "right",
+      },
       len: {
         type: Number,
       },
@@ -290,6 +313,11 @@
         type: Object,
         default: () => ({}),
       },
+      // 自定义样式
+      customStyle: {
+        type: Object,
+        default: () => ({}),
+      },
     },
     computed: {
       // 是否存在旧值
@@ -331,7 +359,7 @@
         let label = this.data[this.field];
         if (["radio", "checkbox", "select"].includes(this.type)) {
           let option = this.options.find(
-            (itm) => itm.value == this.data[this.field]
+            (itm) => itm.value == this.data[this.field],
           );
           option && (label = option.label);
           !option && (label = "");
@@ -345,7 +373,7 @@
         let label = this.curData[this.field];
         if (["radio", "select"].includes(this.type)) {
           let option = this.options.find(
-            (itm) => itm.value == this.curData[this.field]
+            (itm) => itm.value == this.curData[this.field],
           );
           // 说明：在选项中匹配到对应的label 则显示，否则显示"未设置"；
           option && (label = option.label);
@@ -378,7 +406,7 @@
        */
       getDateNow: function () {
         let now = new Date(
-          new Date(Date.now()).toLocaleDateString() + " 23:59:59"
+          new Date(Date.now()).toLocaleDateString() + " 23:59:59",
         ).getTime();
         return () => now;
       },
@@ -491,7 +519,7 @@
         // 部分类型需要添加{label: "全部", value: ""} 选项
         if (this.showAllOption && this.options instanceof Array) {
           let existsAllOption = this.options.find(
-            (option) => option.value == ""
+            (option) => option.value == "",
           );
           !existsAllOption && this.options.unshift(this.allOptionConfig);
         }
@@ -533,7 +561,7 @@
         // 日期
         if (
           ["dates", "datetime", "daterange", "datetimerange"].includes(
-            this.type
+            this.type,
           )
         )
           _format += "-dd";
@@ -590,6 +618,13 @@
       autocompleteHandleSelect({ label, value }) {
         this.$emit("change", { value, key: this.field });
       },
+      /**
+       * 插槽变更触发
+       * @param value
+       */
+      onSlotChange(value) {
+        this.form[this.field] = value;
+      },
     },
   };
 </script>
@@ -616,8 +651,8 @@
       width: 100%;
 
       .#{$el-item} {
-        display: flex;
-        flex-direction: column;
+        // display: flex;
+        // flex-direction: column;
         width: 100% !important;
       }
 

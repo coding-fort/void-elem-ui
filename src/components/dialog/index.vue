@@ -25,7 +25,26 @@
       >
         <!-- 弹窗头部 -->
         <div class="vue-ui-dialog-header" v-if="title || showClose">
-          <h3 class="vue-ui-dialog-title">{{ title }}</h3>
+          <h3 class="vue-ui-dialog-title">
+            <span
+              class="vue-ui-dialog-status"
+              :class="
+                ['success', 'info', 'error', 'warning'].includes(type)
+                  ? 'is-' + type
+                  : 'is-warning'
+              "
+              v-if="type"
+            >
+              <i
+                :class="`el-icon-${
+                  ['success', 'info', 'error', 'warning'].includes(type)
+                    ? type
+                    : 'warning'
+                }`"
+              ></i>
+            </span>
+            {{ title }}
+          </h3>
           <button
             class="vue-ui-dialog-close"
             v-if="showClose"
@@ -57,12 +76,14 @@
         <!-- 底部按钮栏（文本模式强制显示，组件模式可配置） -->
         <div class="vue-ui-dialog-footer" v-if="showFooter">
           <button
+            v-if="showCancelButton"
             class="vue-ui-dialog-btn vue-ui-dialog-btn--cancel"
             @click="handleCancel"
           >
             {{ cancelText }}
           </button>
           <button
+            v-if="showConfirmButton"
             class="vue-ui-dialog-btn vue-ui-dialog-btn--confirm"
             @click="handleConfirm"
           >
@@ -94,6 +115,9 @@
         closeOnClickMask: true,
         resolve: null,
         reject: null,
+        showCancelButton: true,
+        showConfirmButton: true,
+        type: "", // type字段表明消息类型，可以为success，error，info和warning
       };
     },
     methods: {
@@ -229,10 +253,28 @@
   }
 
   .vue-ui-dialog-title {
+    align-items: center;
     color: #333;
+    display: flex;
     font-size: 16px;
     font-weight: 500;
     margin: 0;
+  }
+  .vue-ui-dialog-status {
+    font-size: 20px;
+    margin-right: 6px;
+  }
+  .vue-ui-dialog-status.is-success {
+    color: #67c23a;
+  }
+  .vue-ui-dialog-status.is-info {
+    color: #909399;
+  }
+  .vue-ui-dialog-status.is-error {
+    color: #f56c6c;
+  }
+  .vue-ui-dialog-status.is-warning {
+    color: #e6a23c;
   }
 
   .vue-ui-dialog-close {

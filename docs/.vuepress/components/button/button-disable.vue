@@ -21,18 +21,12 @@
 </template>
 
 <script>
-  import VoButton from "../../../../src/components/button/index.vue";
-  import CompWrap from "../utils/comp-wrap.vue";
-
   export default {
-    components: {
-      CompWrap,
-      VoButton,
-    },
     data() {
       return {
         desc: `按钮不可用状态。你可以使用<code>disabled</code>属性来定义按钮是否可用，它接受一个<code>Boolean</code>值。`,
-        codeStr: `<el-row>
+        codeStr: `<template>
+<el-row>
   <vo-button disabled>默认按钮</vo-button>
   <vo-button type="primary" disabled>主要按钮</vo-button>
   <vo-button type="success" disabled>成功按钮</vo-button>
