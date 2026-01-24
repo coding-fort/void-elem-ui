@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :desc="desc" :code-str="codeStr">
+  <comp-wrap title="用法" :desc="desc" :code-str="codeStr">
     <div>
       <vo-link href="https://element.eleme.io" target="_blank"
         >默认链接</vo-link
@@ -18,7 +18,7 @@
     data() {
       return {
         desc: `基础的文字链接用法。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <div>
   <vo-link href="https://element.eleme.io" target="_blank">默认链接</vo-link>
   <vo-link type="primary">主要链接</vo-link>

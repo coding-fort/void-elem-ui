@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :desc="desc" :code-str="codeStr">
+  <comp-wrap title="用法" :desc="desc" :code-str="codeStr">
     <vo-image-form-item
       title="上传图片"
       :upload-action="uploadAction"
@@ -24,7 +24,7 @@
     data() {
       return {
         desc: `表单用图片上传控件。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-image-form-item title="上传图片" :upload-action="uploadAction" :interceptors="interceptors" @clear="handleClear" />
 <vo-button text="提交" @click="handleSubmit" />
 

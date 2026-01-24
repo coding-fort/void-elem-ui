@@ -26,7 +26,7 @@
         <li>如果插入的组件类似日期范围类，初始值为数组的，则需要配置<code>_initValue = []</code>用于校验初始化；</li>
         <li>为了能使得表单校验正常，需要从插槽作用域获取变值同步方法<code>onSlotChange</code>，同步当前值到组件内部；</li>
         <li>如需要绑定重置按钮，则通过自定义事件<code>@reset</code>进行处理；</li>`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-form :fields="formColumns" @submit="handleSubmit">
   <template #date="{ props }">
     <el-date-picker

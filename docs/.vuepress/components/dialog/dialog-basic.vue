@@ -1,6 +1,6 @@
 <template>
   <comp-wrap
-    title="基础用法"
+    title="用法"
     :desc="desc"
     code-type="js"
     :code-str="codeStr"
@@ -15,7 +15,7 @@
     data() {
       return {
         desc: "通过<code>content</code> 属性可以设置提示信息。",
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-button primary @click="handleClick" text="点击打开弹窗" />
 
 import { dialog as $vdialog } from "void-elem-ui";

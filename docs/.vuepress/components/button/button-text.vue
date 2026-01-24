@@ -10,7 +10,7 @@
     data() {
       return {
         desc: `没有边框和背景色的按钮。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-button type="text">文字按钮</vo-button>
 <vo-button type="text" disabled>文字按钮</vo-button>`,
       };

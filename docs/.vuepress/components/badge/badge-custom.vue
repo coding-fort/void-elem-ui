@@ -14,7 +14,7 @@
     data() {
       return {
         desc: `可以显示数字以外的文本内容。定义<code>value</code>为<code>String</code>类型是时可以用于显示自定义文本。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-badge value="new" class="item">
   <el-button size="small">评论</el-button>
 </vo-badge>

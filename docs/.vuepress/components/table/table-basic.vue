@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :code-str="codeStr">
+  <comp-wrap title="用法" :code-str="codeStr">
     <vo-table ref="es-table" :columns="tableColumns" :response="tableResponse">
       <template slot="operate" slot-scope="{ row }">
         <vo-button text="详情" type="text" @click="handleDetail(row)" />
@@ -29,7 +29,7 @@
         ],
       };
       return {
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-table ref="es-table" :columns="tableColumns" :response="tableResponse">
   <template slot="operate" slot-scope="{ row }">
     <vo-button text="详情" type="text" @click="handleDetail(row)" />

@@ -26,7 +26,7 @@
     data() {
       return {
         desc: `支持偏移指定的栏数。通过制定 col 组件的 <code>offset</code> 属性可以指定分栏偏移的栏数。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <el-row :gutter="20">
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="6" :offset="6"><div class="grid-content bg-purple"></div></el-col>

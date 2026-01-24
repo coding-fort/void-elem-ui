@@ -1,9 +1,5 @@
 <template>
-  <comp-wrap
-    title="RSA 解密（decrypt）"
-    :desc="desc"
-    :code-str="codeStr"
-  >
+  <comp-wrap title="RSA 解密（decrypt）" :desc="desc" :code-str="codeStr">
     <p class="mt-0 mb-10">
       1.RSA 私钥
       <span style="font-size: 12px; color: red; margin-left: 20px">
@@ -21,12 +17,8 @@
       :rows="3"
       disabled
     ></el-input>
-    <vo-button class="mt-10" @click="handleDecrypt" type="primary" size="mini">
-      解密
-    </vo-button>
-    <vo-button class="mt-10" @click="handleReset" type="danger" size="mini">
-      重置
-    </vo-button>
+    <vo-button class="mt-10-i" text="解密" primary @click="handleDecrypt" />
+    <vo-button class="mt-10-i" text="重置" danger @click="handleReset" />
   </comp-wrap>
 </template>
 

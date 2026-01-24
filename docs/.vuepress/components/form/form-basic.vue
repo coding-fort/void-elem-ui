@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :desc="desc" code-type="js" :code-str="codeStr">
+  <comp-wrap title="用法" :desc="desc" code-type="js" :code-str="codeStr">
     <vo-form :fields="formColumns" @submit="handleSubmit"> </vo-form>
   </comp-wrap>
 </template>
@@ -9,7 +9,7 @@
     data() {
       return {
         desc: "通过<code>fields</code> 配置查询表单字段；通过自定义事件<code>submit</code> 获取当前表单对象；",
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-form :fields="formColumns" @submit="handleSubmit" />
 
 export default {

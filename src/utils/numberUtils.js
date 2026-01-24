@@ -1,94 +1,167 @@
 /**
  * 数值处理工具集
  */
-const numberUtils = {
-  /**
-   * 控制数值小数点前后位数（输入格式化）
-   * @param {*} value 输入值
-   * @param {number} digital 小数点后位数（默认：2）
-   * @param {number} decimal 小数点前位数限制（默认：0 不限制）
-   * @returns {string} 格式化后的数值字符串
-   */
-  inputDecimal(value, digital = 2, decimal = 0) {
-    if (!value && value !== 0) return "";
 
-    // 转字符串并去除首尾空格
-    let valStr = String(value).trim();
+/**
+ * 安全的小数处理（四舍五入）
+ * @param {number} num
+ * @param {number} decimals
+ * @returns {string}
+ */
+function toFixedSafe(num, decimals) {
+  if (decimals < 0) decimals = 0;
+  const factor = Math.pow(10, decimals);
+  const rounded = Math.round(num * factor) / factor;
+  return rounded.toFixed(decimals);
+}
 
-    // 过滤非数字和小数点字符
-    valStr = valStr.replace(/[^\d.]/g, "");
+/**
+ * 解析字符串为有效数字（去除千分位）
+ * @param {*} str
+ * @returns {number|undefined}
+ */
+function toValidNumber(str) {
+  if (str == null || str === "") return undefined;
+  const clean = typeof str === "string" ? str.replace(/,/g, "") : String(str);
+  const num = Number(clean);
+  return isNaN(num) || !isFinite(num) ? undefined : num;
+}
 
-    // 处理开头小数点、多个小数点
-    valStr = valStr.replace(/^\./g, ""); // 移除开头小数点
-    valStr = valStr.replace(".", "$#$").replace(/\./g, "").replace("$#$", "."); // 保留一个小数点
+/**
+ * 千分位格式化（支持负数）
+ * @param {string} integerStr - 整数部分字符串（如 "12345" 或 "-12345"）
+ * @returns {string}
+ */
+function thousandSeparator(integerStr) {
+  const isNegative = integerStr.startsWith("-");
+  let absStr = isNegative ? integerStr.slice(1) : integerStr;
+  absStr = absStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return isNegative ? "-" + absStr : absStr;
+}
 
-    // 限制小数点后位数
-    const decimalReg = new RegExp(
-      `^(-)*(\\d+)\\.(${"\\d".repeat(digital)}).*$`,
-      "g"
-    );
-    valStr = valStr.replace(decimalReg, "$1$2.$3");
+/**
+ * 数值输入格式化（用于 input 实时控制）
+ * @param {*} value 输入值（通常来自 input event）
+ * @param {Object} [options] 配置项
+ * @param {number} [options.fractionDigits=2] 小数点后最多保留位数
+ * @param {boolean} [options.allowNegative=false] 是否允许负数
+ * @param {boolean} [options.trimLeadingZeros=true] 是否移除前导零（如 "00123" → "123"）
+ * @returns {string} 格式化后的字符串（适合赋值给 input 的 value）
+ */
+function formatInputNumber(value, options = {}) {
+  const {
+    fractionDigits = 2,
+    allowNegative = false,
+    trimLeadingZeros = true,
+  } = options;
 
-    // 限制小数点前位数
-    if (decimal > 0) {
-      const [integerPart, fractionalPart] = valStr.split(".");
-      const limitedInteger = integerPart.substring(0, decimal);
-      valStr = fractionalPart
-        ? `${limitedInteger}.${fractionalPart}`
-        : limitedInteger;
+  if (value == null || value === "") {
+    return "";
+  }
+
+  let str = String(value).trim();
+
+  // 1. 只保留合法字符：数字、小数点、（可选）开头的负号
+  const allowedChars = allowNegative ? /[^-\d.]/g : /[^\d.]/g;
+  str = str.replace(allowedChars, "");
+
+  // 2. 负号处理：只保留开头的一个
+  if (allowNegative) {
+    // str = str.replace(/^-+/, "-").replace(/-(?!^)/g, "");
+    str = str.replace(/(?<=.)-/g, "");
+  }
+
+  // 3. 小数点处理：只保留第一个
+  const parts = str.split(".");
+  if (parts.length > 2) {
+    str = parts[0] + "." + parts.slice(1).join("");
+  }
+
+  // 4. 限制小数位数
+  if (str.includes(".")) {
+    const [intPart, decPart] = str.split(".");
+    str = `${intPart}.${decPart.slice(0, fractionDigits)}`;
+  }
+
+  // 5. 移除开头的小数点（如 ".123" → "123"）
+  if (str.startsWith(".")) {
+    str = str.slice(1);
+  }
+
+  // 6. 移除前导零（可选）
+  if (
+    trimLeadingZeros &&
+    str.length > 1 &&
+    !str.startsWith("0.") &&
+    !str.startsWith("-0.")
+  ) {
+    str = str.replace(/^(-)?0+(\d)/, "$1$2");
+  }
+
+  // 7. 防止 "-0"（可选，根据需求）
+  if (str === "-0") {
+    str = "0";
+  }
+
+  // 在 return 前加一个保护
+  if (allowNegative && str === "-") {
+    return "-";
+  }
+
+  return str;
+}
+
+/**
+ * 金额格式化（千分位）/ 逆向解析
+ * @param {*} value 金额值（数字/字符串）
+ * @param {object} [options] 配置
+ * @param {number} [options.decimal=2] 保留小数位数
+ * @param {boolean} [options.type=false] 是否逆向解析
+ * @param {string} [options.symbol=''] 币种符号
+ * @returns {string|number|undefined}
+ */
+function transformMoney(value, options = {}) {
+  const { decimal = 2, type = false, symbol = "" } = options;
+
+  let processedValue = value;
+
+  // 🔑 逆向解析：仅移除开头的非数值字符（保留中间内容）
+  if (type && typeof value === "string") {
+    processedValue = value.replace(/^[^-\d.]+/, "");
+  }
+
+  const num = toValidNumber(processedValue);
+
+  if (type) {
+    // 🔑 逆向解析：如果数字有效，按 decimal 四舍五入
+    if (num != null && isFinite(num)) {
+      // 使用 toFixedSafe 处理浮点精度问题
+      const roundedStr = toFixedSafe(num, decimal);
+      return Number(roundedStr); // 转回 number
     }
+    return num; // undefined 或 NaN
+  }
 
-    return valStr;
-  },
+  if (!isFinite(num)) {
+    return undefined;
+  }
 
-  /**
-   * 金额格式化（千分位）/ 逆向解析
-   * @param {*} value 金额值（数字/字符串）
-   * @param {number} decimal 保留小数位数（默认：2）
-   * @param {boolean} type 是否逆向解析（true：去除千分位转数字）
-   * @param {string} identi 标识符，币种符号
-   * @returns {string|number|undefined} 格式化后的金额/数值，无效值返回 undefined
-   */
-  transformMoney(value, { decimal = 2, type = false, identi = "" } = {}) {
-    // 空值处理（0 是有效数值）
-    if (!value && value !== 0) return undefined;
+  const fixedStr = toFixedSafe(num, decimal);
+  const [integerPart, fractionalPart = ""] = fixedStr.split(".");
 
-    // 逆向解析：去除千分位转数字
-    if (type) {
-      const num =
-        typeof value === "string" ? +value.replaceAll(",", "") : +value;
-      return isNaN(num) ? undefined : num;
-    }
+  const formattedInteger = thousandSeparator(integerPart);
+  const formattedFractional = fractionalPart.padEnd(decimal, "0");
 
-    // 正向格式化：千分位 + 小数位限制
-    let num = typeof value === "string" ? +value.replaceAll(",", "") : +value;
-    if (isNaN(num)) return undefined;
+  let result = symbol + formattedInteger;
+  if (decimal > 0) {
+    result += "." + formattedFractional;
+  }
 
-    // 小数位处理（避免科学计数法）
-    const toFixedFix = (n, prec) => {
-      const pow = Math.pow(10, prec);
-      return parseFloat((n * pow).toFixed(prec * 2)).toFixed(prec);
-    };
+  return result;
+}
 
-    const fixedNum = toFixedFix(num, decimal);
-    const [integerPart, fractionalPart] = fixedNum.split(".");
-
-    // 千分位处理
-    const thousandSeparator = (str) => {
-      const reg = /(-?\d+)(\d{3})/;
-      let result = str;
-      while (reg.test(result)) {
-        result = result.replace(reg, "$1,$2");
-      }
-      return result;
-    };
-
-    const formattedInteger = thousandSeparator(integerPart);
-    const formattedFractional =
-      fractionalPart || new Array(decimal + 1).join("0");
-
-    return `${identi}${formattedInteger}.${formattedFractional}`;
-  },
+// 导出
+export default {
+  transformMoney,
+  formatInputNumber,
 };
-
-export default numberUtils;

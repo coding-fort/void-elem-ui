@@ -22,7 +22,7 @@
     data() {
       return {
         desc: ``,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <el-input
     v-model="value"
     type="textarea"

@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :desc="desc" :code-str="codeStr">
+  <comp-wrap title="用法" :desc="desc" :code-str="codeStr">
     <vo-image-upload upload-url="uploadUrl"></vo-image-upload>
   </comp-wrap>
 </template>
@@ -9,7 +9,7 @@
     data() {
       return {
         desc: ``,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-image-upload upload-url="uploadUrl"></vo-image-upload>
         `,
         uploadUrl: "https://jsonplaceholder.typicode.com/posts/",

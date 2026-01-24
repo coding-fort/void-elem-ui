@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :desc="desc" :code-str="codeStr">
+  <comp-wrap title="用法" :desc="desc" :code-str="codeStr">
     <el-row>
       <vo-button>默认按钮</vo-button>
       <vo-button type="primary">主要按钮</vo-button>
@@ -43,7 +43,7 @@
     data() {
       return {
         desc: `基础的按钮用法。使用<code>type</code>、<code>plain</code>、<code>round</code>和<code>circle</code>属性来定义 <b>Button</b> 的样式。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <el-row>
   <vo-button>默认按钮</vo-button>
   <vo-button type="primary">主要按钮</vo-button>

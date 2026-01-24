@@ -47,7 +47,7 @@
     data() {
       return {
         desc: "<code>Form</code> 表单组件，内部使用<code>form-item</code> 组件来渲染不同表单组件；",
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <div class="item">
   <b>Input 输入框</b>
   <vo-form-item

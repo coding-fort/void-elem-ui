@@ -1,9 +1,5 @@
 <template>
-  <comp-wrap
-    title="RSA 加密（encrypt）"
-    :desc="desc"
-    :code-str="codeStr"
-  >
+  <comp-wrap title="RSA 加密（encrypt）" :desc="desc" :code-str="codeStr">
     <p class="mt-0 mb-10">
       1.RSA 公钥
       <span style="font-size: 12px; color: red; margin-left: 20px">
@@ -28,21 +24,13 @@
       :rows="5"
       disabled
     ></el-input>
-    <vo-button class="mt-10" @click="handleEncrypt" type="primary" size="mini">
-      加密
-    </vo-button>
-    <vo-button class="mt-10" @click="handleCopy" type="success" size="mini">
-      复制密文
-    </vo-button>
-    <vo-button class="mt-10" @click="handleReset" type="danger" size="mini">
-      重置
-    </vo-button>
+    <vo-button class="mt-10-i" text="加密" primary @click="handleEncrypt" />
+    <vo-button class="mt-10" text="复制密文" success @click="handleCopy" />
+    <vo-button class="mt-10" text="重置" danger @click="handleReset" />
   </comp-wrap>
 </template>
 
 <script>
-  import RSATool from "../../../../src/utils/rsaUtils";
-
   export default {
     data() {
       return {
@@ -79,7 +67,10 @@ this.encrypted = await $vutil.rsa.encrypt(this.calcData, this.publicKey);
     methods: {
       async handleEncrypt() {
         try {
-          this.encrypted = await this.$vutil.rsa.encrypt(this.calcData, this.publicKey);
+          this.encrypted = await this.$vutil.rsa.encrypt(
+            this.calcData,
+            this.publicKey,
+          );
           this.$message.success(`加密成功`);
         } catch (error) {
           this.$message.error(`加密失败`);

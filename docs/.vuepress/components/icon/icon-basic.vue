@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :code-str="codeStr" class="icon-basic">
+  <comp-wrap title="用法" :code-str="codeStr" class="icon-basic">
     <vo-icon class="el-icon-edit" />
     <vo-icon class="el-icon-share" />
     <vo-icon class="el-icon-delete" />
@@ -11,7 +11,7 @@
   export default {
     data() {
       return {
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-icon class="el-icon-share" />
 <vo-icon class="el-icon-delete" />
 <vo-icon class="el-icon-edit" />

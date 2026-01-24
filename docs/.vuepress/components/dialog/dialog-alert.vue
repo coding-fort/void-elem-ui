@@ -15,7 +15,7 @@
     data() {
       return {
         desc: "通过<code>showCancelButton = false</code>，可以将取消按钮隐藏。",
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-button primary @click="handleClick" text="点击打开弹窗" />
 
 import { dialog as $vdialog } from "void-elem-ui";

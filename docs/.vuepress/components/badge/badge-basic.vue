@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :desc="desc" :code-str="codeStr">
+  <comp-wrap title="用法" :desc="desc" :code-str="codeStr">
     <vo-badge :value="12" class="item">
       <el-button size="small">评论</el-button>
     </vo-badge>
@@ -36,7 +36,7 @@
     data() {
       return {
         desc: `展示新消息数量。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-badge :value="12" class="item">
   <el-button size="small">评论</el-button>
 </vo-badge>

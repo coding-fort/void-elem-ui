@@ -15,7 +15,7 @@
     data() {
       return {
         desc: "<code>content</code> 属性还可以传入一个组件，直接渲染。",
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-button @click="handleClick" text="点击打开组件弹窗" />
 
 import { dialog as $vdialog } from "void-elem-ui";

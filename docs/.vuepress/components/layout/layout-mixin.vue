@@ -22,7 +22,7 @@
     data() {
       return {
         desc: `通过基础的 1/24 分栏任意扩展组合形成较为复杂的混合布局。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <el-row :gutter="20">
   <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>

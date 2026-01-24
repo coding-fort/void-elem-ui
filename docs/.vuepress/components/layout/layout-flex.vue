@@ -42,7 +42,7 @@
     data() {
       return {
         desc: `通过 <code>flex</code> 布局来对分栏进行灵活的对齐。将 <code>type</code> 属性赋值为 'flex'，可以启用 flex 布局，并可通过 <code>justify</code> 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的排版方式。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <el-row type="flex" class="row-bg">
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>

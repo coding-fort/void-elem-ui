@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="基础方法" :desc="desc" :code-str="codeStr">
+  <comp-wrap title="用法" :desc="desc" :code-str="codeStr">
     <vo-query-form
       :fields="formColumns"
       @query="handleQuery"
@@ -35,7 +35,7 @@
       };
       return {
         desc: "通过<code>fields</code> 配置查询表单字段；通过自定义事件<code>query</code> 获取当前查询表单对象；",
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-query-form :fields="formColumns" @query="handleQuery" >
   <template slot="left-btns">
     <vo-button text="导出" @click="handleExport" />

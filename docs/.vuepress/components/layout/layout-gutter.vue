@@ -13,7 +13,7 @@
     data() {
       return {
         desc: `分栏之间存在间隔。Row 组件 提供 <code>gutter</code> 属性来指定每一栏之间的间隔，默认间隔为 0。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <el-row :gutter="20">
     <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>

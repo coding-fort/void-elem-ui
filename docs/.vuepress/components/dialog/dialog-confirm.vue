@@ -15,7 +15,7 @@
     data() {
       return {
         desc: "<code>type</code>字段表明消息类型，可以为<code>success</code>，<code>error</code>，<code>info</code>和<code>warning</code>。对应类型在标题左侧会有对应的<code>Icon</code> 图标。",
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-button primary @click="handleClick" text="点击打开弹窗" />
 
 import { dialog as $vdialog } from "void-elem-ui";

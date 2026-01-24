@@ -149,7 +149,7 @@
       return {
         title: "QueryFormItem 日期时间框",
         desc: "<code>QueryForm</code> 查询表单组件，内部使用<code>query-form-item</code> 组件来渲染不同表单组件；",
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <div class="item">
   <b>年度选择框</b>
   <vo-query-form-item

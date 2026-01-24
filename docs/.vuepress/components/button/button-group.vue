@@ -19,7 +19,7 @@
     data() {
       return {
         desc: `以按钮组的方式出现，常用于多项类似操作。使用<code>&lt;vo-button-group&gt;</code>标签来嵌套你的按钮。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-button-group>
   <vo-button type="primary" icon="el-icon-arrow-left">上一页</vo-button>
   <vo-button type="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></vo-button>

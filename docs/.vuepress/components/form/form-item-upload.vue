@@ -16,7 +16,7 @@
         <li>属性<code>accept</code>，图片格式限制，默认为<b>image/png,image/jpg</b>；</li>
         <li>属性<code>interceptors</code>，拦截器对象，包含<code>success: Function(response)</code>和<code>error: Function(response)</code></li>
         `,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-form :fields="formColumns" @submit="handleSubmit"> </vo-form>
 
 export default {

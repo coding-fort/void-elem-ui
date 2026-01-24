@@ -560,7 +560,7 @@
           _format += "-MM";
         // 日期
         if (
-          ["dates", "datetime", "daterange", "datetimerange"].includes(
+          ["date", "dates", "datetime", "daterange", "datetimerange"].includes(
             this.type,
           )
         )

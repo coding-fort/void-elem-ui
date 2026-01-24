@@ -6,7 +6,7 @@ title: Dialog 弹窗
 
 采用 Element-UI 中的`MessageBox` 的代码驱动模式，整合了`alert`，`confirm`，`prompt`，`dialog` 组件；
 
-## 全局引入
+<h3>全局引入</h3>
 
 如果你完整引入了 Void-Elem-UI， Vue.prototype 添加如下全局方法：`$vdialog`。因此在 Vue instance 中可以采用本页面中的方式调用 Dialog 弹窗。调用参数为：
 
@@ -14,7 +14,7 @@ title: Dialog 弹窗
 this.$vdialog(options);
 ```
 
-## 单独引用
+<h3>单独引用</h3>
 
 如果单独引入 Dialog 弹窗：
 

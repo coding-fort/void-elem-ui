@@ -64,7 +64,7 @@
   export default {
     data() {
       return {
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-row>
     <vo-col :span="24">
         <div class="grid-content bg-purple-dark"></div>

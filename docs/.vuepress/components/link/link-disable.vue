@@ -17,7 +17,7 @@
       return {
         title: `禁用状态`,
         desc: `文字链接不可用状态。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
   <div>
     <vo-link disabled>默认链接</vo-link>
     <vo-link type="primary" disabled>主要链接</vo-link>

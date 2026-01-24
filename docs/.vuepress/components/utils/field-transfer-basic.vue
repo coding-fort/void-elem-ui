@@ -1,5 +1,5 @@
 <template>
-  <comp-wrap title="正向转换（后端>前端）" :desc="desc" :code-str="codeStr">
+  <comp-wrap title="正向转换（后端 → 前端）" :desc="desc" :code-str="codeStr">
     <p class="mt-0 mb-10">1.映射配置表：key=前端字段，value=后端字段</p>
     <el-input
       class="demo"
@@ -24,9 +24,7 @@
       :rows="2"
       disabled
     ></el-input>
-    <vo-button class="mt-10" @click="handleTransfer" type="primary" size="mini">
-      转换
-    </vo-button>
+    <vo-button class="mt-10-i" @click="handleTransfer" primary text="转换" />
   </comp-wrap>
 </template>
 
@@ -35,7 +33,7 @@
     data() {
       return {
         desc: `<code>void-elem-ui</code> 内置工具类：<b>transformData</b>`,
-        codeStr: `
+        codeStr: `<!---->
 <p>1.映射配置表：key=前端字段，value=后端字段</p>
 <el-input class="demo" v-model="calcUserMap" type="textarea" :rows="2" disabled/>
 <p>2.接口返回对象</p>

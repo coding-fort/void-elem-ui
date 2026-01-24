@@ -15,7 +15,7 @@
     data() {
       return {
         desc: `可自定义最大值。由<code>max</code>属性定义，它接受一个<code>Number</code>，需要注意的是，只有当<code>value</code>为<code>Number</code>时，它才会生效。`,
-        codeStr: `<template>
+        codeStr: `<!-- -->
 <vo-badge :value="200" :max="99" class="item">
   <el-button size="small">评论</el-button>
 </vo-badge>
