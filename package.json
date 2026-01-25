@@ -10,6 +10,7 @@
     "build:lib": "webpack --mode production",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "docs:build:github": "VUEPRESS_BASE=github vuepress build docs",
     "prepublishOnly": "npm run build:lib"
   },
   "keywords": [
