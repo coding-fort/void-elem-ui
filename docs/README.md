@@ -1,8 +1,8 @@
 <!-- README.md -->
 
-<!-- # void-elem-ui -->
+# void-elem-ui
 
-![Logo](/logo.svg)
+<!-- ![Logo](/logo.svg) -->
 
 [![npm version](https://img.shields.io/npm/v/void-elem-ui.svg?style=flat-square)](https://www.npmjs.com/package/void-elem-ui)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
