@@ -9,7 +9,7 @@
   "scripts": {
     "build:lib": "webpack --mode production",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "cp ./CHANGELOG.md docs/changelog.md && cp ./README.md docs/README.md && vuepress build docs",
+    "docs:build": "vuepress build docs",
     "prepublishOnly": "npm run build:lib"
   },
   "keywords": [
