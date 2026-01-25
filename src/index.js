@@ -53,7 +53,7 @@ const utils = {
 
 const install = function (Vue, options = {}) {
   components.forEach((component) => {
-    console.log("[Component Name Check]", component.name, component); // 👈 打印 name
+    // console.log("[Component Name Check]", component.name, component); // 👈 打印 name
     // Vue.component(component.name, component);
     Vue.use(component);
   });

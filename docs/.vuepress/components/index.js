@@ -32,6 +32,6 @@ export default (Vue) => {
     Vue.component(componentName, component);
 
     // 可选：调试日志
-    console.log(`[组件注册] 成功注册：${componentName}（路径：${filePath}）`);
+    // console.log(`[组件注册] 成功注册：${componentName}（路径：${filePath}）`);
   });
 };

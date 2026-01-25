@@ -3,7 +3,7 @@
 // import VoidElemUI from '../../src';
 import "./public/index.scss";
 export default ({ Vue, options, router, siteData, isServer }) => {
-  console.log("[Client] Registering components...");
+  // console.log("[Client] Registering components...");
   if (!isServer) {
     // 注册 Element UI
     const ElementUI = require("element-ui");
@@ -45,6 +45,6 @@ export default ({ Vue, options, router, siteData, isServer }) => {
     window.__cryptoPolyfill = cryptoPolyfill;
     window.global = window;
     // }
-    console.log("[Client] Components ready");
+    // console.log("[Client] Components ready");
   }
 };
