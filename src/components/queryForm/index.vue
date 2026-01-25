@@ -179,11 +179,14 @@
        */
       handleReset() {
         this.form = {};
-        // 区域金额未清空
-        this.$refs["form-input-range"]?.forEach((itm) => {
-          itm.$children[0].$children[0].$children[1].handleClear();
-        });
-        this.$emit("reset", true);
+        let ref = this.$refs["form-input-range"];
+        if (ref) {
+          // 区域金额未清空
+          ref.forEach((itm) => {
+            itm.$children[0].$children[0].$children[1].handleClear();
+          });
+          this.$emit("reset", true);
+        }
       },
       /**
        * [操作] 查询

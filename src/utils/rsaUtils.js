@@ -1,11 +1,11 @@
 const crypto = require("crypto");
 // import crypto from ("crypto");
 
-class rsaUtils {
-  static KEY_ALGORITHM = "RSA";
-  static CIPHER_ALGORITHM = "RSA_PKCS1_PADDING";
-  static MAX_ENCRYPT_BLOCK = 117;
-  static MAX_DECRYPT_BLOCK = 128;
+const rsaUtils = {
+  KEY_ALGORITHM: "RSA",
+  CIPHER_ALGORITHM: "RSA_PKCS1_PADDING",
+  MAX_ENCRYPT_BLOCK: 117,
+  MAX_DECRYPT_BLOCK: 128,
 
   /**
    * 使用RSA公钥加密数据
@@ -13,7 +13,7 @@ class rsaUtils {
    * @param {string} publicKeyStr 公钥字符串（Base64编码）
    * @returns {Promise<string>} 加密后的数据（Base64编码）
    */
-  static async encrypt(data, publicKeyStr) {
+  async encrypt(data, publicKeyStr) {
     try {
       // 解码公钥
       const publicKey = `-----BEGIN PUBLIC KEY-----\n${publicKeyStr}\n-----END PUBLIC KEY-----`;
@@ -30,7 +30,7 @@ class rsaUtils {
             key: publicKey,
             padding: crypto.constants.RSA_PKCS1_PADDING,
           },
-          chunk
+          chunk,
         );
         encryptedChunks.push(encryptedChunk);
       }
@@ -41,7 +41,7 @@ class rsaUtils {
       console.error("RSA加密失败:", e);
       throw new Error("RSA加密失败");
     }
-  }
+  },
 
   /**
    * 使用RSA私钥解密数据
@@ -49,7 +49,7 @@ class rsaUtils {
    * @param {string} privateKeyStr 私钥字符串（Base64编码）
    * @returns {Promise<string>} 解密后的数据
    */
-  static async decrypt(encryptedData, privateKeyStr) {
+  async decrypt(encryptedData, privateKeyStr) {
     try {
       // 解码私钥
       const privateKey = `-----BEGIN PRIVATE KEY-----\n${privateKeyStr}\n-----END PRIVATE KEY-----`;
@@ -66,7 +66,7 @@ class rsaUtils {
             key: privateKey,
             padding: crypto.constants.RSA_PKCS1_PADDING,
           },
-          chunk
+          chunk,
         );
         decryptedChunks.push(decryptedChunk);
       }
@@ -77,8 +77,8 @@ class rsaUtils {
       console.error("RSA解密失败:", e);
       throw new Error("RSA解密失败");
     }
-  }
-}
+  },
+};
 
 // export default rsaUtils;
 module.exports = rsaUtils;
